@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "./node_modules/@satolep/eslint/next", 
+    "next/core-web-vitals"
+  ]
+}
