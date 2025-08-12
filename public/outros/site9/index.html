@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Alguém Especial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5e6ff 0%, #e6f9ff 100%);
+            overflow-x: hidden;
+        }
+        
+        .dancing-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        .envelope {
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .envelope.open {
+            transform: rotateX(180deg);
+        }
+        
+        .letter {
+            transform-origin: bottom;
+            transition: all 0.5s 0.5s ease;
+            opacity: 0;
+            transform: scaleY(0);
+        }
+        
+        .envelope.open .letter {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .photo-frame {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .hidden-message {
+            opacity: 0;
+            transition: all 0.5s ease;
+            transform: translateY(20px);
+        }
+        
+        .show-message {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden">
+    <!-- Background elements -->
+    <div id="hearts-container"></div>
+    
+    <!-- Main content -->
+    <div class="container mx-auto px-4 py-12">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="dancing-font text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 mb-4">
+                Para Você, Meu Amor
+            </h1>
+            <p class="text-xl text-purple-700">Cada momento contigo é especial...</p>
+        </header>
+        
+        <!-- Envelope surprise -->
+        <div class="flex justify-center mb-16">
+            <div class="relative w-64 h-40 cursor-pointer" onclick="openEnvelope()">
+                <div class="envelope absolute w-full h-full bg-gradient-to-br from-pink-300 to-pink-500 rounded-lg shadow-xl flex items-center justify-center">
+                    <div class="absolute top-0 left-0 right-0 h-1/2 bg-pink-200 rounded-t-lg"></div>
+                    <div class="absolute top-1/2 left-0 right-0 h-1/2 bg-pink-400 rounded-b-lg"></div>
+                    <div class="absolute top-0 left-0 right-0 h-full bg-pink-300 origin-top rounded-t-lg transition-all duration-500 ease-in-out"></div>
+                    <i class="fas fa-heart text-white text-4xl z-10"></i>
+                </div>
+                <div class="letter absolute top-0 w-11/12 h-36 bg-white mx-auto p-4 rounded shadow-md hidden">
+                    <h3 class="dancing-font text-2xl text-pink-600 mb-2">Para você...</h3>
+                    <p class="text-sm text-gray-700">Passe o mouse sobre os corações abaixo para descobrir uma mensagem especial que preparei para você.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Interactive hearts -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            <div class="heart-item bg-pink-100 rounded-full w-24 h-24 flex items-center justify-center mx-auto cursor-pointer hover:bg-pink-200 transition-all duration-300" 
+                 onmouseover="showMessage(0)">
+                <i class="fas fa-heart text-pink-500 text-4xl"></i>
+                <div class="hidden-message absolute -bottom-20 left-0 right-0 bg-white p-3 rounded shadow-md text-center">
+                    <p class="text-xs text-pink-700">Você ilumina meus dias</p>
+                </div>
+            </div>
+            <div class="heart-item bg-blue-100 rounded-full w-24 h-24 flex items-center justify-center mx-auto cursor-pointer hover:bg-blue-200 transition-all duration-300" 
+                 onmouseover="showMessage(1)">
+                <i class="fas fa-heart text-blue-500 text-4xl"></i>
+                <div class="hidden-message absolute -bottom-20 left-0 right-0 bg-white p-3 rounded shadow-md text-center">
+                    <p class="text-xs text-blue-700">Seu sorriso é meu favorito</p>
+                </div>
+            </div>
+            <div class="heart-item bg-purple-100 rounded-full w-24 h-24 flex items-center justify-center mx-auto cursor-pointer hover:bg-purple-200 transition-all duration-300" 
+                 onmouseover="showMessage(2)">
+                <i class="fas fa-heart text-purple-500 text-4xl"></i>
+                <div class="hidden-message absolute -bottom-20 left-0 right-0 bg-white p-3 rounded shadow-md text-center">
+                    <p class="text-xs text-purple-700">Você é a melhor parte do meu dia</p>
+                </div>
+            </div>
+            <div class="heart-item bg-teal-100 rounded-full w-24 h-24 flex items-center justify-center mx-auto cursor-pointer hover:bg-teal-200 transition-all duration-300" 
+                 onmouseover="showMessage(3)">
+                <i class="fas fa-heart text-teal-500 text-4xl"></i>
+                <div class="hidden-message absolute -bottom-20 left-0 right-0 bg-white p-3 rounded shadow-md text-center">
+                    <p class="text-xs text-teal-700">Meu coração é seu</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Photo gallery -->
+        <div class="mb-16">
+            <h2 class="dancing-font text-3xl text-center text-purple-600 mb-8">Nossos Momentos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="photo-frame bg-white p-2 rounded-lg">
+                    <div class="bg-gradient-to-br from-pink-200 to-blue-200 h-48 rounded flex items-center justify-center">
+                        <i class="fas fa-camera-retro text-white text-5xl"></i>
+                    </div>
+                    <p class="text-center mt-2 text-pink-700">Nosso primeiro encontro</p>
+                </div>
+                <div class="photo-frame bg-white p-2 rounded-lg">
+                    <div class="bg-gradient-to-br from-purple-200 to-teal-200 h-48 rounded flex items-center justify-center">
+                        <i class="fas fa-umbrella-beach text-white text-5xl"></i>
+                    </div>
+                    <p class="text-center mt-2 text-purple-700">Dia na praia</p>
+                </div>
+                <div class="photo-frame bg-white p-2 rounded-lg">
+                    <div class="bg-gradient-to-br from-blue-200 to-violet-200 h-48 rounded flex items-center justify-center">
+                        <i class="fas fa-mug-hot text-white text-5xl"></i>
+                    </div>
+                    <p class="text-center mt-2 text-blue-700">Café da manhã especial</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Final surprise -->
+        <div class="text-center mb-16">
+            <button onclick="revealFinalSurprise()" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                Clique para uma surpresa especial
+            </button>
+            <div id="final-surprise" class="mt-8 hidden">
+                <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="dancing-font text-3xl text-pink-600 mb-4">Para você, meu amor</h3>
+                    <p class="text-gray-700 mb-4">Quero que saiba que cada momento ao seu lado é um presente. Você traz cores à minha vida, alegria ao meu coração e amor à minha alma.</p>
+                    <p class="text-gray-700">Obrigado por ser você. Eu te amo mais do que as palavras podem expressar.</p>
+                    <div class="mt-6 flex justify-center">
+                        <i class="fas fa-heart text-pink-500 text-4xl floating"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Music player -->
+        <div class="bg-white bg-opacity-80 rounded-xl p-6 max-w-md mx-auto shadow-md">
+            <h3 class="dancing-font text-2xl text-center text-purple-600 mb-4">Nossa Música</h3>
+            <div class="flex items-center justify-center">
+                <button id="play-btn" class="bg-pink-500 text-white rounded-full w-12 h-12 flex items-center justify-center mr-4 hover:bg-pink-600 transition">
+                    <i class="fas fa-play"></i>
+                </button>
+                <div>
+                    <p class="text-sm font-medium text-gray-800">Canção Romântica</p>
+                    <p class="text-xs text-gray-500">Artista Especial</p>
+                </div>
+            </div>
+            <audio id="romantic-song" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+        </div>
+    </div>
+    
+    <!-- Floating hearts animation -->
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const colors = ['#ff6b8b', '#ff8fab', '#ffb3c6', '#d8b4fe', '#c7b9ff', '#b5e2fa'];
+            const container = document.getElementById('hearts-container');
+            
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(heart);
+            }
+        }
+        
+        // Open envelope
+        function openEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const letter = document.querySelector('.letter');
+            
+            envelope.classList.toggle('open');
+            letter.classList.toggle('hidden');
+        }
+        
+        // Show message on heart hover
+        function showMessage(index) {
+            const messages = document.querySelectorAll('.hidden-message');
+            messages.forEach(msg => msg.classList.remove('show-message'));
+            messages[index].classList.add('show-message');
+        }
+        
+        // Reveal final surprise
+        function revealFinalSurprise() {
+            const surprise = document.getElementById('final-surprise');
+            surprise.classList.toggle('hidden');
+            
+            if (!surprise.classList.contains('hidden')) {
+                // Add more hearts when surprise is revealed
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(() => {
+                        createHearts();
+                    }, i * 300);
+                }
+            }
+        }
+        
+        // Music player
+        const playBtn = document.getElementById('play-btn');
+        const audio = document.getElementById('romantic-song');
+        let isPlaying = false;
+        
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                audio.play();
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        // Initialize
+        window.onload = function() {
+            createHearts();
+        };
+    </script>
+</body>
+</html>

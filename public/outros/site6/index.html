@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whispers of Love - A Romantic Poem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffeef8 100%);
+            min-height: 100vh;
+        }
+        
+        .dancing-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 2s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .petal {
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <!-- Background petals -->
+    <div id="petals-container"></div>
+    
+    <!-- Main content -->
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+        <!-- Header -->
+        <header class="text-center mb-16 fade-in">
+            <h1 class="dancing-font text-5xl md:text-7xl font-bold text-pink-600 mb-4">Whispers of Love</h1>
+            <p class="text-lg text-gray-600">A romantic ode to flowers and hummingbirds</p>
+        </header>
+        
+        <!-- Poem section -->
+        <div class="bg-white bg-opacity-80 rounded-2xl shadow-xl p-8 md:p-12 mb-16 backdrop-blur-sm fade-in">
+            <div class="max-w-2xl mx-auto text-center">
+                <!-- Hummingbird decoration -->
+                <div class="floating mb-8">
+                    <i class="fas fa-dove text-4xl text-pink-500 transform rotate-45"></i>
+                </div>
+                
+                <!-- Poem verses -->
+                <div class="space-y-8">
+                    <div class="group">
+                        <p class="dancing-font text-2xl md:text-3xl text-gray-800 leading-relaxed transition-all duration-300 group-hover:text-pink-600">
+                            Like hummingbirds that softly sip<br>
+                            From blossoms pink with morning's kiss,<br>
+                            My heart takes flight when you are near,<br>
+                            Drawn to your love so sweet and clear.
+                        </p>
+                    </div>
+                    
+                    <div class="group">
+                        <p class="dancing-font text-2xl md:text-3xl text-gray-800 leading-relaxed transition-all duration-300 group-hover:text-purple-600">
+                            The roses blush when you pass by,<br>
+                            The lilies bow their heads so shy,<br>
+                            For none can match your gentle grace,<br>
+                            That paints a smile on nature's face.
+                        </p>
+                    </div>
+                    
+                    <div class="group">
+                        <p class="dancing-font text-2xl md:text-3xl text-gray-800 leading-relaxed transition-all duration-300 group-hover:text-blue-600">
+                            As petals dance on zephyr's wing,<br>
+                            And honeybees their tribute bring,<br>
+                            So does my soul in rhythm move,<br>
+                            To melodies of our sweet love.
+                        </p>
+                    </div>
+                    
+                    <div class="group">
+                        <p class="dancing-font text-2xl md:text-3xl text-gray-800 leading-relaxed transition-all duration-300 group-hover:text-red-600">
+                            Let gardens bloom where'er we tread,<br>
+                            With scarlet blooms and gold and red,<br>
+                            For you're the flower, pure and true,<br>
+                            That makes my heart take flight anew.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Signature -->
+                <div class="mt-12">
+                    <p class="dancing-font text-3xl text-pink-500">Forever Yours</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Interactive elements -->
+        <div class="text-center fade-in">
+            <button id="send-poem" class="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 font-medium mb-6">
+                <i class="fas fa-paper-plane mr-2"></i> Send This Poem
+            </button>
+            
+            <p class="text-gray-500 mb-8">Share this romantic poem with someone special</p>
+            
+            <div class="flex justify-center space-x-4">
+                <button class="w-12 h-12 rounded-full bg-blue-100 text-blue-500 hover:bg-blue-200 transition-colors duration-300 flex items-center justify-center">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+                <button class="w-12 h-12 rounded-full bg-pink-100 text-pink-500 hover:bg-pink-200 transition-colors duration-300 flex items-center justify-center">
+                    <i class="fab fa-instagram"></i>
+                </button>
+                <button class="w-12 h-12 rounded-full bg-green-100 text-green-500 hover:bg-green-200 transition-colors duration-300 flex items-center justify-center">
+                    <i class="fab fa-whatsapp"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="py-8 text-center text-gray-500 text-sm">
+        <p>Created with <i class="fas fa-heart text-pink-500"></i> for romantics everywhere</p>
+        <p class="mt-2">© 2023 Whispers of Love. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Create floating petals
+        function createPetals() {
+            const petalsContainer = document.getElementById('petals-container');
+            const petalTypes = ['🌸', '🌺', '🌷', '🌹', '🏵️', '💮'];
+            
+            for (let i = 0; i < 20; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.innerHTML = petalTypes[Math.floor(Math.random() * petalTypes.length)];
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.top = Math.random() * 100 + 'vh';
+                petal.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                petal.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                petal.style.animationDelay = (Math.random() * 5) + 's';
+                
+                // Random animation for each petal
+                if (i % 3 === 0) {
+                    petal.style.animationName = 'floating';
+                } else if (i % 3 === 1) {
+                    petal.style.animation = `floating ${Math.random() * 5 + 3}s ease-in-out infinite alternate`;
+                } else {
+                    petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    petal.style.animation = `floating ${Math.random() * 7 + 4}s ease-in-out infinite`;
+                }
+                
+                petalsContainer.appendChild(petal);
+            }
+        }
+        
+        // Send poem button interaction
+        document.getElementById('send-poem').addEventListener('click', function() {
+            alert('This beautiful poem has been sent to your loved one!  💌');
+        });
+        
+        // Initialize
+        window.addEventListener('load', function() {
+            createPetals();
+            
+            // Add hover effect to poem verses
+            const verses = document.querySelectorAll('.group p');
+            verses.forEach(verse => {
+                verse.addEventListener('mouseover', function() {
+                    this.style.transform = 'scale(1.03)';
+                });
+                verse.addEventListener('mouseout', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

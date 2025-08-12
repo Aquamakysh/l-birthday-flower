@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whispers of Love</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        .floating-2 {
+            animation: float 5s ease-in-out infinite 1s;
+        }
+        .floating-3 {
+            animation: float 7s ease-in-out infinite 0.5s;
+        }
+        .text-shadow {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        .bg-gradient-romantic {
+            background: linear-gradient(135deg, #f9c1d5 0%, #f8e3e9 100%);
+        }
+    </style>
+</head>
+<body class="bg-gradient-romantic min-h-screen font-serif overflow-x-hidden">
+    <div class="container mx-auto px-4 py-12">
+        <!-- Header -->
+        <header class="text-center mb-16">
+            <h1 class="text-5xl md:text-6xl font-bold text-pink-700 mb-4 text-shadow">Whispers of Love</h1>
+            <p class="text-xl text-pink-600">A romantic interlude between nature's wonders</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="relative">
+            <!-- Background Flowers -->
+            <div class="absolute -left-10 top-1/4 opacity-70">
+                <svg class="w-32 h-32 text-pink-300 floating" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <path fill="currentColor" d="M50 20a5 5 0 0 1 5 5v10h10a5 5 0 0 1 0 10H55v10a5 5 0 0 1-10 0V45H35a5 5 0 0 1 0-10h10V25a5 5 0 0 1 5-5z"/>
+                    <circle cx="50" cy="50" r="15" fill="#f9a8d4"/>
+                </svg>
+            </div>
+            <div class="absolute -right-10 top-1/3 opacity-70">
+                <svg class="w-40 h-40 text-purple-300 floating-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <path fill="currentColor" d="M50 10c-5 0-10 5-10 10s5 10 10 10 10-5 10-10-5-10-10-10zm0 30c-5 0-10 5-10 10s5 10 10 10 10-5 10-10-5-10-10-10zm0 30c-5 0-10 5-10 10s5 10 10 10 10-5 10-10-5-10-10-10z"/>
+                </svg>
+            </div>
+            <div class="absolute left-1/4 bottom-1/4 opacity-60">
+                <svg class="w-24 h-24 text-rose-200 floating-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="30" r="15" fill="#fda4af"/>
+                    <circle cx="30" cy="50" r="15" fill="#fda4af"/>
+                    <circle cx="70" cy="50" r="15" fill="#fda4af"/>
+                    <circle cx="50" cy="70" r="15" fill="#fda4af"/>
+                </svg>
+            </div>
+
+            <!-- Poem Container -->
+            <div class="relative bg-white bg-opacity-70 backdrop-blur-sm rounded-3xl shadow-xl p-8 md:p-12 max-w-3xl mx-auto">
+                <!-- Hummingbird -->
+                <div class="absolute -top-16 -right-10">
+                    <svg class="w-32 h-32 text-emerald-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                        <path fill="currentColor" d="M70 50c0-10-10-20-20-20s-20 10-20 20 10 20 20 20 20-10 20-20z"/>
+                        <path fill="#166534" d="M60 50c0-5-5-10-10-10s-10 5-10 10 5 10 10 10 10-5 10-10z"/>
+                        <path fill="currentColor" d="M80 40l-10 10 10 10zM20 40l10 10-10 10z"/>
+                        <path fill="#166534" d="M50 30l5 20-5 20z"/>
+                    </svg>
+                </div>
+                
+                <!-- Poem -->
+                <div class="text-center space-y-8">
+                    <p class="text-2xl md:text-3xl text-pink-700 italic leading-relaxed">
+                        Like hummingbirds to flowers sweet,<br>
+                        Our hearts in rhythm gently beat.<br>
+                        Petals fall in soft cascade,<br>
+                        As love's sweet melody is made.
+                    </p>
+                    
+                    <div class="flex justify-center space-x-12">
+                        <!-- Interactive Flowers -->
+                        <button onclick="animateFlower(this)" class="transform hover:scale-110 transition-transform">
+                            <svg class="w-16 h-16 text-rose-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="30" fill="#f43f5e"/>
+                                <circle cx="30" cy="30" r="15" fill="#fb7185"/>
+                                <circle cx="70" cy="30" r="15" fill="#fb7185"/>
+                                <circle cx="30" cy="70" r="15" fill="#fb7185"/>
+                                <circle cx="70" cy="70" r="15" fill="#fb7185"/>
+                            </svg>
+                        </button>
+                        
+                        <button onclick="animateHummingbird(this)" class="transform hover:scale-110 transition-transform">
+                            <svg class="w-16 h-16 text-emerald-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                                <path fill="currentColor" d="M60 40l-10 10-10-10z"/>
+                                <path fill="#166534" d="M50 50l10 20-10 10-10-20z"/>
+                            </svg>
+                        </button>
+                        
+                        <button onclick="animateFlower(this)" class="transform hover:scale-110 transition-transform">
+                            <svg class="w-16 h-16 text-purple-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="20" fill="#a855f7"/>
+                                <path fill="#8b5cf6" d="M50 30l10 20-10 10-10-20z"/>
+                                <path fill="#8b5cf6" d="M70 50l-20 10-10-10 20-10z"/>
+                                <path fill="#8b5cf6" d="M50 70l-10-20 10-10 10 20z"/>
+                                <path fill="#8b5cf6" d="M30 50l20-10 10 10-20 10z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Floating Hummingbird -->
+                <div class="absolute -bottom-12 -left-12 transform -rotate-12">
+                    <svg class="w-24 h-24 text-teal-500 floating-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                        <path fill="currentColor" d="M40 60l10-10 10 10z"/>
+                        <path fill="#0d9488" d="M50 50l10 20-10 10-10-20z"/>
+                    </svg>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-24 text-center text-pink-600">
+            <p>Nature's romance unfolds in petals and wings</p>
+            <p class="mt-2 text-sm">Click on the flowers and hummingbirds to see them dance</p>
+        </footer>
+    </div>
+
+    <script>
+        function animateFlower(element) {
+            const flower = element.querySelector('svg');
+            flower.classList.add('animate-spin');
+            setTimeout(() => {
+                flower.classList.remove('animate-spin');
+            }, 1000);
+            
+            // Create floating petals
+            for (let i = 0; i < 5; i++) {
+                createFloatingPetal(element);
+            }
+        }
+        
+        function animateHummingbird(element) {
+            const bird = element.querySelector('svg');
+            bird.classList.add('animate-bounce');
+            setTimeout(() => {
+                bird.classList.remove('animate-bounce');
+            }, 1000);
+        }
+        
+        function createFloatingPetal(parent) {
+            const petal = document.createElement('div');
+            petal.innerHTML = `
+                <svg class="w-8 h-8 text-pink-400 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <path fill="currentColor" d="M50 10c-10 0-20 10-20 20s10 20 20 20 20-10 20-20-10-20-20-20z"/>
+                </svg>
+            `;
+            
+            const rect = parent.getBoundingClientRect();
+            const startX = rect.left + rect.width/2;
+            const startY = rect.top + rect.height/2;
+            
+            petal.style.left = `${startX}px`;
+            petal.style.top = `${startY}px`;
+            petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+            
+            document.body.appendChild(petal);
+            
+            const animation = petal.animate([
+                { 
+                    transform: `translate(0, 0) rotate(0deg)`,
+                    opacity: 1 
+                },
+                { 
+                    transform: `translate(${Math.random() * 200 - 100}px, ${Math.random() * 100 + 100}px) rotate(360deg)`,
+                    opacity: 0 
+                }
+            ], {
+                duration: 2000 + Math.random() * 1000,
+                easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+            });
+            
+            animation.onfinish = () => petal.remove();
+        }
+    </script>
+</body>
+</html>
