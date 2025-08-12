@@ -4,13 +4,13 @@ import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 
 const montserratSans = Montserrat({
-  variable: '--font-geist-sans',
+  variable: '--font-montserrat-sans',
   subsets: ['latin']
 })
 
 export const metadata: Metadata = {
-  title: 'L: Flor de Aniversário',
-  description: 'Flor de Aniversário'
+  title: 'Larissa: Flor',
+  description: 'Flor para Flor'
 }
 
 export default function RootLayout({

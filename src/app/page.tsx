@@ -1,11 +1,5 @@
-import { Flower } from '@components/Flower'
+import { HomeTemplate } from '@components/template/HomeTemplate'
 
 export default function Home() {
-  return (
-    <div className='w-dvw h-dvh bg-blue-950'>
-      <main className='w-full h-full'>
-        <Flower />
-      </main>
-    </div>
-  )
+  return <HomeTemplate />
 }
