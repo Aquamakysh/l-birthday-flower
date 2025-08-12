@@ -1,64 +1,13 @@
-'use client'
-
-import { useState } from 'react'
+import { ActivePetal } from '@components/template/FlowerTemplate'
 
 import { Petals } from './Petals'
 
-export type ActivePetal = {
-  petal01: boolean
-  petal02: boolean
-  petal03: boolean
-  petal04: boolean
-  petal05: boolean
-  petal06: boolean
-  petal07: boolean
-  petal08: boolean
-  petal09: boolean
-  petal10: boolean
-  petal11: boolean
-  petal12: boolean
-  petal13: boolean
-  petal14: boolean
-  petal15: boolean
-  petal16: boolean
-  petal17: boolean
-  petal18: boolean
-  petal19: boolean
-  petal20: boolean
+type FlowerProps = {
+  activePetal: ActivePetal
+  setMusicPetal(key: keyof ActivePetal): void
 }
 
-export function Flower() {
-  const [activePetal, setActivePetal] = useState<ActivePetal>({
-    petal01: false,
-    petal02: false,
-    petal03: false,
-    petal04: false,
-    petal05: false,
-    petal06: false,
-    petal07: false,
-    petal08: false,
-    petal09: false,
-    petal10: false,
-    petal11: false,
-    petal12: false,
-    petal13: false,
-    petal14: false,
-    petal15: false,
-    petal16: false,
-    petal17: false,
-    petal18: false,
-    petal19: false,
-    petal20: false
-  })
-
-  function togglePetal(key: keyof typeof activePetal) {
-    setActivePetal(current => {
-      const newData = current
-      newData[key] = true
-      return { ...newData }
-    })
-  }
-
+export function Flower({ activePetal, setMusicPetal }: FlowerProps) {
   function Peduncle() {
     return (
       <path
@@ -69,18 +18,19 @@ export function Flower() {
   }
 
   return (
-    <div className='flex items-center justify-center  w-full h-full'>
-      <svg
-        className='max-w-[90vw] max-h-[90vh] w-full h-full'
-        width='877'
-        height='1087'
-        viewBox='0 0 877 1087'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-      >
-        <Petals activePetal={activePetal} togglePetal={togglePetal} />
-        <Peduncle />
-      </svg>
-    </div>
+    <svg
+      className='max-w-[90vw] max-h-[90vh] w-full h-full'
+      width='877'
+      height='1087'
+      viewBox='0 0 877 1087'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <Petals
+        activePetal={activePetal}
+        setMusicPetal={setMusicPetal}
+      />
+      <Peduncle />
+    </svg>
   )
 }

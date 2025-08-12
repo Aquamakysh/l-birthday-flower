@@ -1,131 +1,131 @@
-import { ActivePetal } from '.'
+import { ActivePetal } from '@components/template/FlowerTemplate'
 
 type PetalsProps = {
   activePetal: ActivePetal
-  togglePetal(key: keyof ActivePetal): void
+  setMusicPetal(key: keyof ActivePetal): void
 }
 
-export function Petals({ activePetal, togglePetal }: PetalsProps) {
+export function Petals({ activePetal, setMusicPetal }: PetalsProps) {
   const petals = [
     {
       className: 'cursor-pointer',
       d: 'M654 134.08C635.5 132.58 634 149.08 634 149.08C634 149.08 630 161.08 654 160.08C678 159.08 674.5 149.08 674.5 149.08C674.5 149.08 672.5 135.58 654 134.08Z',
-      fill: activePetal.petal01 ? '#329C92' : '#9A4E69',
-      onClick: () => togglePetal('petal01')
+      fill: activePetal.petal01.active ? '#329C92' : '#9A4E69',
+      onClick: () => setMusicPetal('petal01')
     },
     {
       className: 'cursor-pointer',
       d: 'M637.5 104.58C621.5 105.58 619 133.58 621 134.08C623 134.58 631 122.58 643 119.08C657.5 114.58 663.5 120.08 664 119.08C665 117.08 653.5 103.58 637.5 104.58Z',
-      fill: activePetal.petal02 ? '#3EC6B8' : '#D7628C',
-      onClick: () => togglePetal('petal02')
+      fill: activePetal.petal02.active ? '#3EC6B8' : '#D7628C',
+      onClick: () => setMusicPetal('petal02')
     },
     {
       className: 'cursor-pointer',
       d: 'M689.5 134.08C678.5 127.58 705 153.58 677 171.58C646.5 186.08 631 164.58 629 168.58C627 172.58 647.5 198.58 681.5 181.08C715.5 163.58 700.5 140.58 689.5 134.08Z',
-      fill: activePetal.petal03 ? '#3EC6B8' : '#D7628C',
-      onClick: () => togglePetal('petal03')
+      fill: activePetal.petal03.active ? '#3EC6B8' : '#D7628C',
+      onClick: () => setMusicPetal('petal03')
     },
     {
       className: 'cursor-pointer',
       d: 'M742.5 169.58C743.5 209.08 683 208.08 679.5 202.58C676 197.08 717.5 193.08 717.5 158.58C717.5 124.08 694.5 125.08 695 122.08C695.5 119.08 709 115.08 716 118.08C723 121.08 741.5 130.08 742.5 169.58Z',
-      fill: activePetal.petal04 ? '#35C4B5' : '#F484AC',
-      onClick: () => togglePetal('petal04')
+      fill: activePetal.petal04.active ? '#35C4B5' : '#F484AC',
+      onClick: () => setMusicPetal('petal04')
     },
     {
       className: 'cursor-pointer',
       d: 'M573 138.08C573 168.58 610.5 183.08 612 178.08C613.5 173.08 604.5 168.08 604 137.08C603.5 106.081 622 103.08 619.5 99.0805C617 95.0805 573 107.58 573 138.08Z',
-      fill: activePetal.petal05 ? '#35C4B5' : '#F484AC',
-      onClick: () => togglePetal('petal05')
+      fill: activePetal.petal05.active ? '#35C4B5' : '#F484AC',
+      onClick: () => setMusicPetal('petal05')
     },
     {
       className: 'cursor-pointer',
       d: 'M694.501 218.58C660.002 216.58 640.502 200.579 639.501 202.58C638.5 204.582 676.501 239.08 705.501 237.08C734.501 235.08 743.501 210.58 742.001 209.08C740.501 207.58 729 220.58 694.501 218.58Z',
-      fill: activePetal.petal06 ? '#3CCBBD' : '#FF8DB6',
-      onClick: () => togglePetal('petal06')
+      fill: activePetal.petal06.active ? '#3CCBBD' : '#FF8DB6',
+      onClick: () => setMusicPetal('petal06')
     },
     {
       className: 'cursor-pointer',
       d: 'M724 260.08C663.001 257.58 619.5 202.58 617.5 204.08C615.5 205.58 684 292.08 729 288.08C774 284.08 783 256.08 781 252.08C779 248.08 785 262.58 724 260.08Z',
-      fill: activePetal.petal07 ? '#40E0D0' : '#FF9BBF',
-      onClick: () => togglePetal('petal07')
+      fill: activePetal.petal07.active ? '#40E0D0' : '#FF9BBF',
+      onClick: () => setMusicPetal('petal07')
     },
     {
       className: 'cursor-pointer',
       d: 'M709.499 304.08C633.5 281.08 582 192.58 568.999 178.08C555.999 163.58 579 223.58 584.5 241.08C590 258.58 598 276.08 613.499 295.58C690 374.58 674.499 395.58 683.499 405.58C688.563 411.206 762.802 392.125 794.999 346.08C820.032 310.282 805.686 245.924 803.499 243.08C798.499 236.58 785.499 327.08 709.499 304.08Z',
-      fill: activePetal.petal08 ? '#40E0D0' : '#FF9BBF',
-      onClick: () => togglePetal('petal08')
+      fill: activePetal.petal08.active ? '#40E0D0' : '#FF9BBF',
+      onClick: () => setMusicPetal('petal08')
     },
     {
       className: 'cursor-pointer',
       d: 'M801.5 194.581C798 152.581 746 124.081 743.5 125.081C741 126.081 764.5 149.081 763.5 190.581C762.5 232.08 739.5 244.081 741 246.081C742.5 248.081 805 236.581 801.5 194.581Z',
-      fill: activePetal.petal09 ? '#40E0D0' : '#FF9BBF',
-      onClick: () => togglePetal('petal09')
+      fill: activePetal.petal09.active ? '#40E0D0' : '#FF9BBF',
+      onClick: () => setMusicPetal('petal09')
     },
     {
       className: 'cursor-pointer',
       d: 'M622.5 58.5803C655 55.5802 713.5 83.0804 701 100.081C687.5 118.08 669.5 84.0803 628.5 83.0803C587.5 82.0803 576.453 103.562 574 102.581C569 100.581 590 61.5804 622.5 58.5803Z',
-      fill: activePetal.petal10 ? '#3CCBBD' : '#FF8DB6',
-      onClick: () => togglePetal('petal10')
+      fill: activePetal.petal10.active ? '#3CCBBD' : '#FF8DB6',
+      onClick: () => setMusicPetal('petal10')
     },
     {
       className: 'cursor-pointer',
       d: 'M752.5 110.581C728.5 99.0807 721.5 102.581 720 101.081C718.5 99.5806 723 84.5806 707.5 71.0806C692 57.5807 681.5 56.5806 681.5 55.5806C681.5 54.5806 728 48.0804 756 76.5804C784 105.08 791 135.581 787.5 135.581C784 135.581 776.5 122.081 752.5 110.581Z',
-      fill: activePetal.petal11 ? '#40E0D0' : '#FF9BBF',
-      onClick: () => togglePetal('petal11')
+      fill: activePetal.petal11.active ? '#40E0D0' : '#FF9BBF',
+      onClick: () => setMusicPetal('petal11')
     },
     {
       className: 'cursor-pointer',
       d: 'M868.003 366.08C834.003 443.58 707.002 420.58 706.002 417.58C705.002 414.58 788.002 410.58 818.002 341.58C848.002 272.58 808.002 216.58 813.002 214.08C818.002 211.58 902.003 288.58 868.003 366.08Z',
-      fill: activePetal.petal12 ? '#6CEADE' : '#FFACCA',
-      onClick: () => togglePetal('petal12')
+      fill: activePetal.petal12.active ? '#6CEADE' : '#FFACCA',
+      onClick: () => setMusicPetal('petal12')
     },
     {
       className: 'cursor-pointer',
       d: 'M583.5 55.0804C546.5 88.0804 555.5 155.58 553.5 167.08C551.5 178.58 516 73.5804 572.5 27.0804C603 0.580408 645.5 29.5804 648 41.0804C649 46.0804 621.5 23.5804 583.5 55.0804Z',
-      fill: activePetal.petal13 ? '#40E0D0' : '#FF9BBF',
-      onClick: () => togglePetal('petal13')
+      fill: activePetal.petal13.active ? '#40E0D0' : '#FF9BBF',
+      onClick: () => setMusicPetal('petal13')
     },
     {
       className: 'cursor-pointer',
       d: 'M522 107.08C522 67.0804 540.5 45.5804 539 43.0804C537.5 40.5804 472.5 35.0803 475 90.0804C477.5 145.08 537.5 212.58 543 214.58C547.974 219.266 537 179.08 529.704 157.58C522.407 136.08 522 121.631 522 107.08Z',
-      fill: activePetal.petal14 ? '#40E0D0' : '#FF9BBF',
-      onClick: () => togglePetal('petal14')
+      fill: activePetal.petal14.active ? '#40E0D0' : '#FF9BBF',
+      onClick: () => setMusicPetal('petal14')
     },
     {
       className: 'cursor-pointer',
       d: 'M581.001 277.58C562 237.58 563.501 207.08 560.501 205.58C557.501 204.08 538 284.08 560.501 315.08C583.001 346.081 607.501 357.58 634.001 373.08C660.5 388.58 664.5 412.58 666.501 408.08C668.501 403.58 663.5 380.58 658 371.58C641.5 344.08 600.001 317.58 581.001 277.58Z',
-      fill: activePetal.petal15 ? '#40E0D0' : '#FF9BBF',
-      onClick: () => togglePetal('petal15')
+      fill: activePetal.petal15.active ? '#40E0D0' : '#FF9BBF',
+      onClick: () => setMusicPetal('petal15')
     },
     {
       className: 'cursor-pointer',
       d: 'M650.5 419.081C641 425.081 507.699 391.58 500.5 382.581C493.3 373.582 503.5 372.582 490 329.081C476.5 285.58 445 249.58 436 223.081C427 196.581 397 102.081 441 40.0804C485 -21.9201 577.5 5.58059 563.5 9.0805C549.5 12.5804 542 22.27 534.5 24.0804C527 25.8907 483.5 17.0811 462 66.5811C440.5 116.081 523.5 208.581 529 236.581C534.5 264.581 530 278.581 542.5 316.581C555 354.581 623.5 385.081 629.5 389.081C635.5 393.081 660 413.081 650.5 419.081Z',
-      fill: activePetal.petal16 ? '#50EDDD' : '#FFA0C2',
-      onClick: () => togglePetal('petal16')
+      fill: activePetal.petal16.active ? '#50EDDD' : '#FFA0C2',
+      onClick: () => setMusicPetal('petal16')
     },
     {
       className: 'cursor-pointer',
       d: 'M404.499 156.081C394.499 53.5806 435.499 38.0806 429.499 31.5806C423.499 25.0806 336.998 55.5804 335.998 153.08C335.568 195.071 408 279.08 429 306.58C450 334.08 476.672 383.566 478 379.58C480.333 372.58 474.499 322.081 447.499 285.581C420.499 249.081 407.589 187.759 404.499 156.081Z',
-      fill: activePetal.petal17 ? '#6CEADE' : '#FFACCA',
-      onClick: () => togglePetal('petal17')
+      fill: activePetal.petal17.active ? '#6CEADE' : '#FFACCA',
+      onClick: () => setMusicPetal('petal17')
     },
     {
       className: 'cursor-pointer',
       d: 'M558.5 415.08C452 377.58 384.5 387.08 395.5 393.08C406.5 399.08 453.5 398.08 503.5 431.58C553.5 465.081 570 483.58 637 506.08C704 528.58 743 450.58 764 437.08C785 423.58 665 452.58 558.5 415.08Z',
-      fill: activePetal.petal18 ? '#6CEADE' : '#FFACCA',
-      onClick: () => togglePetal('petal18')
+      fill: activePetal.petal18.active ? '#6CEADE' : '#FFACCA',
+      onClick: () => setMusicPetal('petal18')
     },
     {
       className: 'cursor-pointer',
       d: 'M364.5 247.08C396.5 306.08 425 318.08 451.5 372.08C450 378.08 376 345.58 353 422.58C353 422.58 299.5 348.08 364.5 247.08Z',
-      fill: activePetal.petal19 ? '#47CDC0' : '#FA88B1',
-      onClick: () => togglePetal('petal19')
+      fill: activePetal.petal19.active ? '#47CDC0' : '#FA88B1',
+      onClick: () => setMusicPetal('petal19')
     },
     {
       className: 'cursor-pointer',
       d: 'M387 407.58C378 412.08 368.5 417.58 368.5 439.58C368.5 439.58 445 541.08 553 479.08C525.5 463.08 516 453.08 482 431.08C448 409.08 396 403.08 387 407.58Z',
-      fill: activePetal.petal20 ? '#47CDC0' : '#FA88B1',
-      onClick: () => togglePetal('petal20')
+      fill: activePetal.petal20.active ? '#47CDC0' : '#FA88B1',
+      onClick: () => setMusicPetal('petal20')
     }
   ]
 
