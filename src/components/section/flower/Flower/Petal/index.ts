@@ -1,4 +1,4 @@
-import { ActivePetal } from '..'
+import { ActivePetal } from '@components/template/FlowerTemplate'
 
 export type PetalProps = {
   activePetal: ActivePetal
