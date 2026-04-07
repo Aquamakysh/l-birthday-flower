@@ -6,7 +6,7 @@ const waveAudio = '/assets/chocolates/audio/joaogilberto-wave.mp3'
 
 const verses = [
   'Em ti vejo tanta riqueza',
-  'Mas além de te admirar',
+  'Mas além de admirar',
   'Quero muito te mimar',
   'Como uma princesa',
   'E para esta alteza',
@@ -257,7 +257,16 @@ function VinylPlayer({ visible }: { visible: boolean }) {
   useEffect(() => {
     audioRef.current = new Audio(waveAudio)
     const audio = audioRef.current
+
+    function handleEnded() {
+      isPlayingRef.current = false
+      setIsPlaying(false)
+      // RAF loop will decelerate and stop on its own
+    }
+
+    audio.addEventListener('ended', handleEnded)
     return () => {
+      audio.removeEventListener('ended', handleEnded)
       audio.pause()
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
