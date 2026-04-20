@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 
+import { BackButton } from '@components/ui/BackButton'
+
 const waveAudio = '/assets/chocolates/audio/joaogilberto-wave.mp3'
 
 const verses = [
@@ -590,6 +592,7 @@ export function ChocolatesTemplate() {
 
   return (
     <main className='min-h-dvh w-dvw bg-[#1C0A04] flex flex-col items-center justify-center gap-10 p-6'>
+      <BackButton />
       <h1 className='text-[#D4A070] text-2xl md:text-3xl font-light tracking-widest text-center uppercase'>
         Ondas de Chocolates
       </h1>

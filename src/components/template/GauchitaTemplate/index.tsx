@@ -1,3 +1,5 @@
+import { BackButton } from '@components/ui/BackButton'
+
 import { Kalam } from 'next/font/google'
 
 const kalam = Kalam({
@@ -70,6 +72,7 @@ export function GauchitaTemplate() {
         ].join(',')
       }}
     >
+      <BackButton />
       {/* Full-page grain — fixed so it tiles smoothly when scrolling */}
       <div
         aria-hidden='true'

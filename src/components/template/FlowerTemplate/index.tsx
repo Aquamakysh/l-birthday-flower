@@ -1,5 +1,204 @@
 'use client'
 
+import { useState } from 'react'
+
+import { Flower } from '@components/section/flower/Flower'
+import { BackButton } from '@components/ui/BackButton'
+
+export type ActivePetal = {
+  petal01: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal02: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal03: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal04: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal05: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal06: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal07: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal08: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal09: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal10: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal11: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal12: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal13: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal14: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal15: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal16: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal17: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal18: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal19: {
+    active: boolean
+    music: MusicSlugs
+  }
+  petal20: {
+    active: boolean
+    music: MusicSlugs
+  }
+}
+
+export const initialActivePetals: ActivePetal = {
+  petal01: {
+    active: false,
+    music: 'A_CARTA'
+  },
+  petal02: {
+    active: false,
+    music: 'COSTUMES'
+  },
+  petal03: {
+    active: false,
+    music: 'ELA_UNE_TODAS_AS_COISAS'
+  },
+  petal04: {
+    active: false,
+    music: 'OUTRA_VEZ'
+  },
+  petal05: {
+    active: false,
+    music: 'A_CARTA'
+  },
+  petal06: {
+    active: false,
+    music: 'COSTUMES'
+  },
+  petal07: {
+    active: false,
+    music: 'ELA_UNE_TODAS_AS_COISAS'
+  },
+  petal08: {
+    active: false,
+    music: 'OUTRA_VEZ'
+  },
+  petal09: {
+    active: false,
+    music: 'A_CARTA'
+  },
+  petal10: {
+    active: false,
+    music: 'COSTUMES'
+  },
+  petal11: {
+    active: false,
+    music: 'ELA_UNE_TODAS_AS_COISAS'
+  },
+  petal12: {
+    active: false,
+    music: 'OUTRA_VEZ'
+  },
+  petal13: {
+    active: false,
+    music: 'A_CARTA'
+  },
+  petal14: {
+    active: false,
+    music: 'COSTUMES'
+  },
+  petal15: {
+    active: false,
+    music: 'ELA_UNE_TODAS_AS_COISAS'
+  },
+  petal16: {
+    active: false,
+    music: 'OUTRA_VEZ'
+  },
+  petal17: {
+    active: false,
+    music: 'A_CARTA'
+  },
+  petal18: {
+    active: false,
+    music: 'COSTUMES'
+  },
+  petal19: {
+    active: false,
+    music: 'ELA_UNE_TODAS_AS_COISAS'
+  },
+  petal20: {
+    active: false,
+    music: 'OUTRA_VEZ'
+  }
+}
+
+export function FlowerTemplate() {
+  const [activePetal, setActivePetal] = useState<ActivePetal>(
+    initialActivePetals
+  )
+
+  function setMusicPetal(key: keyof typeof activePetal) {
+    setActivePetal(current => {
+      const newData = current
+      newData[key].active = true
+      return { ...newData }
+    })
+  }
+
+  return (
+    <main className='w-dvw h-dvh'>
+      <BackButton />
+      <article className='h-screen flex items-center justify-center p-4 w-full bg-cyan-900'>
+        <Flower
+          activePetal={activePetal}
+          setMusicPetal={setMusicPetal}
+        />
+      </article>
+    </main>
+  )
+}
+
+/* 'use client'
+
 import { useMemo, useState } from 'react'
 
 import { Flower } from '@components/section/flower/Flower'
@@ -314,3 +513,4 @@ export default function FlowerTemplate() {
 //   description={<ModalContent />}
 //   title='A Carta'
 // />
+ */

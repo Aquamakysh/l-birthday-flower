@@ -95,7 +95,7 @@ export default function AudioCirclePlayer({
       audio.removeEventListener('ended', onEnd)
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
-  }, [src])
+  }, [current, src])
 
   const toggle = async () => {
     const a = audioRef.current
