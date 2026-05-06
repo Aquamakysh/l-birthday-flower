@@ -150,7 +150,7 @@ function EnvelopeCard({
           border: '1px solid rgba(130,80,18,0.45)',
           boxShadow: '0 6px 24px rgba(60,30,5,0.45)',
           overflow: 'visible',
-          minHeight: '163px'
+          aspectRatio: '4/3'
         }}
       >
         {/* Photo — always present in center, revealed when flaps open */}
@@ -159,7 +159,11 @@ function EnvelopeCard({
           src={image}
           alt={`Foto ${roman[index]}`}
           style={{
+            position: 'absolute',
+            inset: 0,
             width: '100%',
+            height: '100%',
+            objectFit: 'cover',
             display: 'block',
             borderRadius: '5px'
           }}
