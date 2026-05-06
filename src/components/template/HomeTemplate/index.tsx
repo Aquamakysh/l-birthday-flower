@@ -39,6 +39,12 @@ const pages = [
     symbol: '✨',
     label: 'Larissa',
     description: 'Teu lindo nome em flores'
+  },
+  {
+    href: '/revolucao',
+    symbol: '🌟',
+    label: 'Revolução',
+    description: 'Há 10 anos te conheci...'
   }
 ]
 
