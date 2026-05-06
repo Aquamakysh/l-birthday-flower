@@ -470,7 +470,7 @@ export function RevolutionTemplate() {
         </p>
 
         <div
-          className='flex flex-col items-stretch gap-20 md:gap-[90px] w-[calc(67%+2.7rem)] md:w-full md:max-w-[340px]'
+          className='flex flex-col items-stretch gap-20 md:gap-[90px] w-[calc(92.46%+3.73rem)] md:w-full md:max-w-[340px]'
           style={{ marginTop: '1rem' }}
         >
           {poemImages.map((image, si) => {
