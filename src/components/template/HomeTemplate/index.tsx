@@ -45,6 +45,12 @@ const pages = [
     symbol: '🌟',
     label: 'Revolução',
     description: 'Há 10 anos te conheci...'
+  },
+  {
+    href: '/jogos',
+    symbol: '🎮',
+    label: 'Jogos',
+    description: 'Pra se divertir'
   }
 ]
 
