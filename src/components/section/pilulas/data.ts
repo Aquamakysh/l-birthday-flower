@@ -125,7 +125,9 @@ export const phrases = [
   'Quero ver todas as tuas faces e jeitos'
 ]
 
-const START_UTC = Date.UTC(2026, 5, 12) // June 12, 2026 — reference as UTC midnight
+// June 12, 2026 00:00 BRT = 03:00 UTC (Brazil is UTC-3, no DST since 2019)
+const BRT_OFFSET_H = 3
+const START_UTC = Date.UTC(2026, 5, 12, BRT_OFFSET_H, 0, 0)
 
 export const START = new Date(START_UTC)
 
@@ -140,23 +142,24 @@ export function getDayIndex(): number {
     .split('-')
     .map(Number)
 
-  const todayUTC = Date.UTC(year, month - 1, day)
+  // Represent the BRT calendar date as its own BRT midnight in UTC
+  const todayUTC = Date.UTC(year, month - 1, day, BRT_OFFSET_H, 0, 0)
   return Math.floor((todayUTC - START_UTC) / 86_400_000)
 }
 
 export function phraseDate(dayIndex: number): Date {
-  const d = new Date(START)
-  d.setDate(d.getDate() + dayIndex)
-  return d
+  return new Date(START_UTC + dayIndex * 86_400_000)
 }
 
 export function formatDate(d: Date, short = false): string {
   if (short)
     return d.toLocaleDateString('pt-BR', {
+      timeZone: 'America/Sao_Paulo',
       day: '2-digit',
       month: '2-digit'
     })
   return d.toLocaleDateString('pt-BR', {
+    timeZone: 'America/Sao_Paulo',
     weekday: 'long',
     day: '2-digit',
     month: 'long'
