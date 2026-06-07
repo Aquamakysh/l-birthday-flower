@@ -20,7 +20,7 @@ import { BackButton } from '@components/ui/BackButton'
 
 type Screen = 'main' | 'reveal' | 'history' | 'random'
 
-export function PipulasTemplate() {
+export function PilulasTemplate() {
   const [dayIndex, setDayIndex] = useState<number | null>(null)
   const [screen, setScreen] = useState<Screen>('main')
 
@@ -267,7 +267,7 @@ export function PipulasTemplate() {
             />
           )}
 
-          {dayIndex >= 0 && !ended && (
+          {dayIndex >= 9 && !ended && (
             <NavCard
               emoji='🎲'
               title='Sortear pílula'

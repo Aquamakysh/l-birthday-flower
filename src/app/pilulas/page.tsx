@@ -1,4 +1,4 @@
-import { PipulasTemplate } from '@components/template/PipulasTemplate'
+import { PilulasTemplate } from '@components/template/PilulasTemplate'
 
 import type { Metadata } from 'next'
 
@@ -9,6 +9,6 @@ export const metadata: Metadata = {
   }
 }
 
-export default function Pipulas() {
-  return <PipulasTemplate />
+export default function Pilulas() {
+  return <PilulasTemplate />
 }

@@ -53,7 +53,7 @@ const pages = [
     description: 'Pra se divertir'
   },
   {
-    href: '/pipulas',
+    href: '/pilulas',
     symbol: '💊',
     label: 'Pílulas',
     description: '100 dias, 100 pílulas'
