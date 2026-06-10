@@ -125,15 +125,34 @@ export const phrases = [
   'Quero ver todas as tuas faces e jeitos'
 ]
 
-// June 12, 2026 00:00 BRT = 03:00 UTC (Brazil is UTC-3, no DST since 2019)
-const BRT_OFFSET_H = 3
-const START_UTC = Date.UTC(2026, 5, 12, BRT_OFFSET_H, 0, 0)
+// ─── Timezone config ───────────────────────────────────────────────────────
+// Switch between brazil / portugal by changing ACTIVE_TZ below.
+// midnightUTCHour: the UTC hour that equals local midnight
+//   Brazil  (UTC-3, no DST): midnight = 03:00 UTC  → 3
+//   Portugal (UTC+1 in summer WEST): midnight = 23:00 UTC prev day → -1
+const TZ_CONFIG = {
+  brazil: { timezone: 'America/Sao_Paulo', midnightUTCHour: 3 },
+  portugal: { timezone: 'Europe/Lisbon', midnightUTCHour: -1 }
+} as const
+
+const ACTIVE_TZ = TZ_CONFIG.portugal // ← change here to switch timezone
+// ───────────────────────────────────────────────────────────────────────────
+
+// June 12, 2026 00:00 local time
+const START_UTC = Date.UTC(
+  2026,
+  5,
+  12,
+  ACTIVE_TZ.midnightUTCHour,
+  0,
+  0
+)
 
 export const START = new Date(START_UTC)
 
 export function getDayIndex(): number {
   const [year, month, day] = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'America/Sao_Paulo',
+    timeZone: ACTIVE_TZ.timezone,
     year: 'numeric',
     month: '2-digit',
     day: '2-digit'
@@ -142,8 +161,14 @@ export function getDayIndex(): number {
     .split('-')
     .map(Number)
 
-  // Represent the BRT calendar date as its own BRT midnight in UTC
-  const todayUTC = Date.UTC(year, month - 1, day, BRT_OFFSET_H, 0, 0)
+  const todayUTC = Date.UTC(
+    year,
+    month - 1,
+    day,
+    ACTIVE_TZ.midnightUTCHour,
+    0,
+    0
+  )
   return Math.floor((todayUTC - START_UTC) / 86_400_000)
 }
 
@@ -154,12 +179,12 @@ export function phraseDate(dayIndex: number): Date {
 export function formatDate(d: Date, short = false): string {
   if (short)
     return d.toLocaleDateString('pt-BR', {
-      timeZone: 'America/Sao_Paulo',
+      timeZone: ACTIVE_TZ.timezone,
       day: '2-digit',
       month: '2-digit'
     })
   return d.toLocaleDateString('pt-BR', {
-    timeZone: 'America/Sao_Paulo',
+    timeZone: ACTIVE_TZ.timezone,
     weekday: 'long',
     day: '2-digit',
     month: 'long'
