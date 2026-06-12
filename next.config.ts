@@ -1,8 +1,9 @@
-import type withSerwistInit from '@serwist/next'
-
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  // esbuild and esbuild-wasm must not be bundled server-side;
+  // they are used by the @serwist/turbopack route handler at runtime.
+  serverExternalPackages: ['esbuild', 'esbuild-wasm'],
   turbopack: {
     rules: {
       '*.svg': {
@@ -20,14 +21,4 @@ const nextConfig: NextConfig = {
   }
 }
 
-// Use require to bypass the tsconfig "@*" → "src/*" alias that would
-// incorrectly resolve @serwist/next to ./src/serwist/next at compile time.
-// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-const withSerwist =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  (require('@serwist/next').default as typeof withSerwistInit)({
-    swSrc: 'src/app/sw.ts',
-    swDest: 'public/sw.js'
-  })
-
-export default withSerwist(nextConfig)
+export default nextConfig

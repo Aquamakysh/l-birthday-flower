@@ -6,7 +6,7 @@ export function SerwistRegistrar() {
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
-        .register('/sw.js', { scope: '/' })
+        .register('/serwist/sw.js', { scope: '/' })
         .catch(console.error)
     }
   }, [])

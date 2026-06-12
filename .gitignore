@@ -40,8 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# serwist / PWA (generated at build time)
-/public/sw.js
-/public/sw.js.map
-/public/workbox-*.js
-/public/workbox-*.js.map
+# serwist / PWA
+# (service worker is served via /serwist/[path] route handler, not public/)
