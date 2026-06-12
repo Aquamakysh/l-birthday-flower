@@ -138,38 +138,31 @@ const TZ_CONFIG = {
 const ACTIVE_TZ = TZ_CONFIG.portugal // ← change here to switch timezone
 // ───────────────────────────────────────────────────────────────────────────
 
-// June 12, 2026 00:00 local time
+// Pills unlock at 08:00 local time each day.
+// midnightUTCHour + 8 = UTC hour for local 08:00
+//   Brazil  (UTC-3): 3  + 8 = 11:00 UTC
+//   Portugal (WEST):  -1 + 8 =  7:00 UTC
+const UNLOCK_HOUR_LOCAL = 8
+
 const START_UTC = Date.UTC(
   2026,
   5,
   12,
-  ACTIVE_TZ.midnightUTCHour,
+  ACTIVE_TZ.midnightUTCHour + UNLOCK_HOUR_LOCAL,
   0,
   0
 )
 
 export const START = new Date(START_UTC)
 
+// Pure UTC arithmetic — each 24 h window starts at 08:00 local time.
 export function getDayIndex(): number {
-  const [year, month, day] = new Intl.DateTimeFormat('en-CA', {
-    timeZone: ACTIVE_TZ.timezone,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  })
-    .format(new Date())
-    .split('-')
-    .map(Number)
+  return Math.floor((Date.now() - START_UTC) / 86_400_000)
+}
 
-  const todayUTC = Date.UTC(
-    year,
-    month - 1,
-    day,
-    ACTIVE_TZ.midnightUTCHour,
-    0,
-    0
-  )
-  return Math.floor((todayUTC - START_UTC) / 86_400_000)
+// UTC timestamp when day `dayIndex + 1` unlocks (or day 0 if dayIndex < 0).
+export function nextUnlockAt(dayIndex: number): number {
+  return START_UTC + Math.max(0, dayIndex + 1) * 86_400_000
 }
 
 export function phraseDate(dayIndex: number): Date {

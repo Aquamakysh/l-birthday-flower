@@ -7,6 +7,7 @@ import {
   font,
   formatDate,
   inkColor,
+  nextUnlockAt,
   pageBackground,
   phraseDate,
   titlePhrase
@@ -20,15 +21,41 @@ import { BackButton } from '@components/ui/BackButton'
 
 type Screen = 'main' | 'reveal' | 'history' | 'random'
 
+function toHMS(ms: number): string {
+  const h = Math.floor(ms / 3_600_000)
+  const m = Math.floor((ms % 3_600_000) / 60_000)
+  const s = Math.floor((ms % 60_000) / 1_000)
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
+}
+
 export function PilulasTemplate() {
   const [dayIndex, setDayIndex] = useState<number | null>(null)
   const [screen, setScreen] = useState<Screen>('main')
+  const [countdown, setCountdown] = useState('')
 
   useEffect(() => {
     fetch('/api/day-index')
       .then(r => r.json())
       .then(({ dayIndex: d }) => setDayIndex(d))
   }, [])
+
+  useEffect(() => {
+    if (dayIndex === null || dayIndex >= 100) return
+    const idx = dayIndex
+
+    function tick() {
+      const ms = nextUnlockAt(idx) - Date.now()
+      if (ms <= 0) {
+        window.location.reload()
+        return
+      }
+      setCountdown(toHMS(ms))
+    }
+
+    tick()
+    const id = setInterval(tick, 1_000)
+    return () => clearInterval(id)
+  }, [dayIndex])
 
   if (dayIndex === null) {
     return (
@@ -69,8 +96,6 @@ export function PilulasTemplate() {
       />
     )
   }
-
-  const daysUntilStart = -dayIndex
 
   return (
     <main
@@ -167,14 +192,26 @@ export function PilulasTemplate() {
             <p
               style={{
                 fontFamily: font,
-                color: inkColor,
-                fontSize: '1.5rem',
-                fontWeight: 700,
-                lineHeight: 1.2
+                color: accent,
+                fontSize: '0.82rem',
+                opacity: 0.78,
+                fontWeight: 300,
+                letterSpacing: '0.1em'
               }}
             >
-              Começa em {daysUntilStart}{' '}
-              {daysUntilStart === 1 ? 'dia' : 'dias'}
+              primeira pílula em
+            </p>
+            <p
+              style={{
+                fontFamily: font,
+                color: inkColor,
+                fontSize: '2rem',
+                fontWeight: 700,
+                letterSpacing: '0.06em',
+                lineHeight: 1
+              }}
+            >
+              {countdown}
             </p>
             <p
               style={{
@@ -185,55 +222,81 @@ export function PilulasTemplate() {
                 fontWeight: 300
               }}
             >
-              A partir de {formatDate(phraseDate(0))}
+              {formatDate(phraseDate(0))} · 08:00
             </p>
           </div>
         )}
 
-        {/* Section 2: Active — progress bar */}
+        {/* Section 2: Active — progress bar + countdown */}
         {dayIndex >= 0 && !ended && (
-          <div className='w-full flex flex-col gap-1.5'>
-            <div className='flex justify-between w-full'>
-              <span
-                style={{
-                  fontFamily: font,
-                  color: accent,
-                  fontSize: '0.78rem',
-                  opacity: 0.78,
-                  fontWeight: 300
-                }}
-              >
-                {dayIndex + 1} de 100
-              </span>
-              <span
-                style={{
-                  fontFamily: font,
-                  color: accent,
-                  fontSize: '0.78rem',
-                  opacity: 0.78,
-                  fontWeight: 300
-                }}
-              >
-                {dayIndex + 1}%
-              </span>
-            </div>
-            <div
-              className='w-full rounded-full overflow-hidden'
-              style={{
-                height: '5px',
-                background: 'rgba(138,85,48,0.12)'
-              }}
-            >
+          <div className='w-full flex flex-col gap-3'>
+            <div className='flex flex-col gap-1.5'>
+              <div className='flex justify-between w-full'>
+                <span
+                  style={{
+                    fontFamily: font,
+                    color: accent,
+                    fontSize: '0.78rem',
+                    opacity: 0.78,
+                    fontWeight: 300
+                  }}
+                >
+                  {dayIndex + 1} de 100
+                </span>
+                <span
+                  style={{
+                    fontFamily: font,
+                    color: accent,
+                    fontSize: '0.78rem',
+                    opacity: 0.78,
+                    fontWeight: 300
+                  }}
+                >
+                  {dayIndex + 1}%
+                </span>
+              </div>
               <div
+                className='w-full rounded-full overflow-hidden'
                 style={{
-                  height: '100%',
-                  width: `${dayIndex + 1}%`,
-                  background:
-                    'linear-gradient(90deg, rgba(138,85,48,0.45), rgba(138,85,48,0.80))',
-                  borderRadius: '9999px',
-                  transition: 'width 0.6s ease'
+                  height: '5px',
+                  background: 'rgba(138,85,48,0.12)'
                 }}
-              />
+              >
+                <div
+                  style={{
+                    height: '100%',
+                    width: `${dayIndex + 1}%`,
+                    background:
+                      'linear-gradient(90deg, rgba(138,85,48,0.45), rgba(138,85,48,0.80))',
+                    borderRadius: '9999px',
+                    transition: 'width 0.6s ease'
+                  }}
+                />
+              </div>
+            </div>
+            <div className='flex items-center justify-between w-full'>
+              <span
+                style={{
+                  fontFamily: font,
+                  color: accent,
+                  fontSize: '0.78rem',
+                  opacity: 0.65,
+                  fontWeight: 300
+                }}
+              >
+                próxima pílula em
+              </span>
+              <span
+                style={{
+                  fontFamily: font,
+                  color: inkColor,
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.05em'
+                }}
+              >
+                {countdown}
+              </span>
             </div>
           </div>
         )}
