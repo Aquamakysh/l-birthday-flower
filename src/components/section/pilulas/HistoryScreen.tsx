@@ -1,9 +1,13 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+
 import { BackNav } from './BackNav'
 import {
   accent,
+  ACTIVE_TZ,
   font,
   formatDate,
-  getDayIndex,
   inkColor,
   pageBackground,
   phraseDate,
@@ -12,8 +16,46 @@ import {
 import { Grain } from './Grain'
 import { WaveDivider } from './WaveDivider'
 
+const START_DATE = '2026-06-12'
+// midnightUTCHour is the UTC hour equal to local midnight (e.g. -1 = UTC+1, 3 = UTC-3)
+// TZ_OFFSET_MS converts that into the ms to subtract from the next UTC midnight
+const TZ_OFFSET_MS = -ACTIVE_TZ.midnightUTCHour * 3_600_000
+
+function getTodayIndex(): number {
+  const today = new Intl.DateTimeFormat('sv-SE', {
+    timeZone: ACTIVE_TZ.timezone
+  }).format(new Date())
+  return Math.round(
+    (new Date(today).getTime() - new Date(START_DATE).getTime()) /
+      86_400_000
+  )
+}
+
+function msUntilMidnight(): number {
+  const now = new Date()
+  const todayStr = new Intl.DateTimeFormat('sv-SE', {
+    timeZone: ACTIVE_TZ.timezone
+  }).format(now)
+  const [y, mo, d] = todayStr.split('-').map(Number)
+  const nextMidnightUTC = Date.UTC(y, mo - 1, d + 1) - TZ_OFFSET_MS
+  return nextMidnightUTC - now.getTime()
+}
+
 export function HistoryScreen({ onBack }: { onBack: () => void }) {
-  const todayIndex = getDayIndex()
+  const [todayIndex, setTodayIndex] = useState(() => getTodayIndex())
+
+  useEffect(() => {
+    const ms = msUntilMidnight()
+    const timeout = setTimeout(() => {
+      setTodayIndex(getTodayIndex())
+      const interval = setInterval(
+        () => setTodayIndex(getTodayIndex()),
+        86_400_000
+      )
+      return () => clearInterval(interval)
+    }, ms)
+    return () => clearTimeout(timeout)
+  }, [])
 
   return (
     <main

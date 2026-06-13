@@ -135,7 +135,7 @@ const TZ_CONFIG = {
   portugal: { timezone: 'Europe/Lisbon', midnightUTCHour: -1 }
 } as const
 
-const ACTIVE_TZ = TZ_CONFIG.portugal // ← change here to switch timezone
+export const ACTIVE_TZ = TZ_CONFIG.portugal // ← change here to switch timezone
 // ───────────────────────────────────────────────────────────────────────────
 
 // Pills unlock at 08:00 local time each day.
